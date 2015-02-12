@@ -1,0 +1,1 @@
+java -jar GoogleBingTranslates.jar --inputcsv input.csv --columns 0 --fromlang english --tolang fr --use google
