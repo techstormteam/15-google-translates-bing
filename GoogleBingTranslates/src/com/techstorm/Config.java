@@ -10,5 +10,6 @@ public class Config {
 	public String accountsCsv;
 	public String columns;
 	public String fromLanguage;
+	public String toLanguageBing;
 	public List<String> toLanguages;
 }
