@@ -30,6 +30,7 @@ public class TranslatorApp {
 	}
 
 	public static void main(String[] args) throws Exception {
+		System.out.println("Starting Translate App...");
 		Config config = readConfiguration();
 
 		Map<String, List<List<String>>> outputs = new HashMap<String, List<List<String>>>();
@@ -93,14 +94,11 @@ public class TranslatorApp {
 			List<List<String>> csvContent = new ArrayList<List<String>>();
 			outputs.put(toLanguage, csvContent);
 		}
-
 		csv.read(config.inputCsv, new CSVReadProc() {
 			public void procRow(int rowIndex, String... values) {
 				List<List<String>> previousContent = null;
 				for (int languageIndex = 0; languageIndex < config.toLanguages
 						.size(); languageIndex++) {
-					System.out.println();
-					System.out.println();
 					
 					String toLanguage = config.toLanguages.get(languageIndex);
 					List<List<String>> csvContent = outputs.get(toLanguage);
@@ -114,6 +112,7 @@ public class TranslatorApp {
 					for (int index = 0; index < valuesPreviousOrOriginal.length; index++) {
 						String value = valuesPreviousOrOriginal[index];
 						for (Integer columnIndex : columnIndexes) {
+							
 							if (columnIndex - 1 == index) {
 								
 								String fromLanguage = config.fromLanguage;
@@ -121,9 +120,6 @@ public class TranslatorApp {
 									fromLanguage = config.toLanguages
 											.get(languageIndex - 1);
 								}
-								System.out.println("from: "+fromLanguage+" to:"+toLanguage);
-								System.out.println("Previous: "+value);
-								System.out.println("---------------------");
 								String combinationKey = combinationKey(value,
 										fromLanguage, toLanguage);
 								if (translateCache.containsKey(combinationKey)) {
@@ -161,17 +157,19 @@ public class TranslatorApp {
 				}
 			}
 		});
-
+		
+		System.out.println("Generating outputs...");
+		
 		int index = -1;
 		for (String languageKey : outputs.keySet()) {
 			index++;
 			if (!config.useGoogle && index != outputs.keySet().size() - 1) {
 				continue;
 			}
-			if (!config.useBing && index == outputs.keySet().size() - 1) {
+			if (!config.useBing && languageKey.equalsIgnoreCase("bing")) {
 				continue;
 			}
-			
+
 			csv.write(getOutputCsvLanguage(config.outputCsv, languageKey),
 					new CSVWriteProc() {
 						public void process(CSVWriter out) {
