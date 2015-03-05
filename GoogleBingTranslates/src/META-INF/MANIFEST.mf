@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Created-By: Tech Storm
-Class-Path: microsoft-translator-java-api-0.6.2-jar-with-dependencies.jar opencsv-2.4.jar SimpleGoogleTranslator-jar-with-dependencies.jar
+Class-Path: microsoft-translator-java-api-0.6.2-jar-with-dependencies.jar opencsv-2.4.jar jackson-core-asl-1.9.4.jar jackson-mapper-asl-1.9.4.jar 
 Main-Class: com.techstorm.TranslatorApp

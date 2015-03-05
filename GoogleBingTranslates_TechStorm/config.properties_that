@@ -1,9 +1,9 @@
-google=YES
+google=NO
 bing=YES
 inputCsv=input.csv
 outputCsv=output.csv
 accountsCsv=accounts.csv
-fromLanguage=ro
+fromLanguage=en
 toLanguage1=sp
 toLanguage2=fr
 toLanguage3=ro
